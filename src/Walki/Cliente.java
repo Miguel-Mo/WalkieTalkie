@@ -6,16 +6,33 @@ import java.util.Scanner;
 
 public class Cliente {
 
+    /**
+     * En em main le pasamos un syso de bienvenida y el mainmethod()
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         System.out.println("Bienvenido Usuario, usted tiene el nombre de Cliente. ");
         mainMethod();
     }// fin de main
 
+
+    /**
+     * Aquí iniciamos algunas variables y llamamos a elegir puerto y a walki
+     */
     public static void mainMethod() {
         int Puerto = 0;
         Puerto = elegirPuerto(Puerto);
         walki(Puerto);
     }
+
+    /**
+     *  El walki recibe el numero del puerto. Con este metodo decidimos
+     * cuando habla y cuando escucha utilizando dos booleans, uno que nos sirve para saver cuando hablar y escuchar y otro
+     *  que nos sirve para saber cuando hay que cortar la comunicación. Finalmente cerramos la comunicación una vez salimos del
+     * bucle.
+     * @param Puerto
+     */
 
     public static void walki(int Puerto) {
         Scanner scanner = new Scanner(System.in);
@@ -78,6 +95,14 @@ public class Cliente {
         }
     }
 
+    /**
+     * Metodo para elegir puerto en el que le pasamos por parametro el numero introducido. Comprobamos si es un numero
+     * si lo es lo asignamos a puerto, si no lo es volvemos a empezar.
+     * @param Puerto
+     * @return
+     * @throws IOException
+     */
+
 
     public static int elegirPuerto(int Puerto) {
         System.out.println("Dame el numero de puerto");
@@ -87,7 +112,7 @@ public class Cliente {
         boolean puertoAsignado = false;
 
         while (!puertoAsignado) {
-            if (isNumeric(puertoConsola)) {
+            if (Util.isNumeric(puertoConsola)) {
                 Puerto = Integer.parseInt(puertoConsola);
                 puertoAsignado = true;
             } else {
@@ -98,12 +123,4 @@ public class Cliente {
         return Puerto;
     }
 
-    private static boolean isNumeric(String cadena) {
-        try {
-            Integer.parseInt(cadena);
-            return true;
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-    }
 }
