@@ -9,15 +9,23 @@ import java.util.Scanner;
 public class Servidor {
 
     public static void main(String args[]) throws IOException {
+        System.out.println("Bienvenido Usuario, usted tiene el nombre de Servidor, \n"+
+                "Hasta que no ELIJA PUERTO NO PODRÁ COMUNICARSE EL CLIENTE CON USTED");
+        mainMethod();
+    }// Fin de main
 
+    public static void mainMethod() throws IOException {
+        ServerSocket servidor;
+        int Puerto=0;
+        Puerto = elegirPuerto(Puerto);
+        servidor = new ServerSocket(Puerto);
+        walki(servidor);
+    }
+    public static void walki(ServerSocket servidor) throws IOException {
         Scanner scanner = new Scanner(System.in);
         String mensaje;
         boolean cambio=true;
         boolean cambioYcorto=false;
-
-        //SERVIDOR
-        ServerSocket servidor;
-        servidor = new ServerSocket(6000);
         System.out.println("Servidor iniciado... " +
                 "Recuerda, para que el otro usuario pueda escribir tienes que usar la palabra CAMBIO en mayúscula," +
                 "para cortar la comunicación CAMBIO Y CORTO en mayúscula," +
@@ -73,7 +81,36 @@ public class Servidor {
         flujoSalida.close();
         cliente.close();
 
-    }// Fin de main
 
+    }
+
+
+        public static int elegirPuerto(int Puerto) throws IOException {
+        System.out.println("Dame el numero de puerto");
+
+        Scanner scanner = new Scanner(System.in);
+        String puertoConsola = scanner.nextLine();
+        boolean puertoAsignado = false;
+
+        while (!puertoAsignado) {
+            if (isNumeric(puertoConsola)) {
+                Puerto = Integer.parseInt(puertoConsola);
+                puertoAsignado = true;
+            } else {
+                System.out.println("Introduce un numero");
+                mainMethod();
+            }
+        }
+        return Puerto;
+    }
+
+    private static boolean isNumeric(String cadena) {
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
 
 }// Fin de Servidor
