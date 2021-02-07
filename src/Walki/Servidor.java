@@ -8,12 +8,21 @@ import java.util.Scanner;
 
 public class Servidor {
 
+    /**
+     * En em main le pasamos un syso de bienvenida y el mainmethod()
+     * @param args
+     * @throws IOException
+     */
     public static void main(String args[]) throws IOException {
         System.out.println("Bienvenido Usuario, usted tiene el nombre de Servidor, \n"+
                 "Hasta que no ELIJA PUERTO NO PODRÁ COMUNICARSE EL CLIENTE CON USTED");
         mainMethod();
     }// Fin de main
 
+    /**
+     * Aquí iniciamos algunas variables y llamamos a elegir puerto y a walki
+     * @throws IOException
+     */
     public static void mainMethod() throws IOException {
         ServerSocket servidor;
         int Puerto=0;
@@ -21,6 +30,15 @@ public class Servidor {
         servidor = new ServerSocket(Puerto);
         walki(servidor);
     }
+
+    /**
+     * El walki recibe el servidor que a su vez lleva el numero del puerto. Con este metodo decidimos
+     * cuando habla y cuando escucha utilizando dos booleans, uno que nos sirve para saver cuando hablar y escuchar y otro
+     * que nos sirve para saber cuando hay que cortar la comunicación. Finalmente cerramos la comunicación una vez salimos del
+     * bucle.
+     * @param servidor
+     * @throws IOException
+     */
     public static void walki(ServerSocket servidor) throws IOException {
         Scanner scanner = new Scanner(System.in);
         String mensaje;
@@ -84,6 +102,13 @@ public class Servidor {
 
     }
 
+    /**
+     * Metodo para elegir puerto en el que le pasamos por parametro el numero introducido. Comprobamos si es un numero
+     * si lo es lo asignamos a puerto, si no lo es volvemos a empezar.
+     * @param Puerto
+     * @return
+     * @throws IOException
+     */
 
         public static int elegirPuerto(int Puerto) throws IOException {
         System.out.println("Dame el numero de puerto");
@@ -93,7 +118,7 @@ public class Servidor {
         boolean puertoAsignado = false;
 
         while (!puertoAsignado) {
-            if (isNumeric(puertoConsola)) {
+            if (Util.isNumeric(puertoConsola)) {
                 Puerto = Integer.parseInt(puertoConsola);
                 puertoAsignado = true;
             } else {
@@ -104,13 +129,5 @@ public class Servidor {
         return Puerto;
     }
 
-    private static boolean isNumeric(String cadena) {
-        try {
-            Integer.parseInt(cadena);
-            return true;
-        } catch (NumberFormatException nfe) {
-            return false;
-        }
-    }
 
 }// Fin de Servidor
