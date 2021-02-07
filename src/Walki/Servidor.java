@@ -1,4 +1,4 @@
-package Multihilo;
+package Walki;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -22,6 +22,8 @@ public class Servidor {
                 "Recuerda, para que el otro usuario pueda escribir tienes que usar la palabra CAMBIO en mayúscula," +
                 "para cortar la comunicación CAMBIO Y CORTO en mayúscula," +
                 "Buena suerte :D");
+
+        System.out.println("Te toca escuchar");
 
         //CLIENTE
         Socket cliente=new Socket();
@@ -58,7 +60,7 @@ public class Servidor {
                     System.out.println("Se ha cortado la conexión");
                     cambioYcorto=true;
                 }else if(mensajeRecibe.contains("CAMBIO")){
-                    System.out.println("Has realizado el cambio ahora te toca escribir");
+                    System.out.println("Han realizado el cambio ahora te toca escribir");
                     cambio=false;
                 }
 

@@ -1,4 +1,4 @@
-package Multihilo;
+package Walki;
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
@@ -11,8 +11,7 @@ public class Cliente {
         String mensaje;
         boolean cambio=false;
         boolean cambioYcorto=false;
-        System.out.println("Bienvenido Usuario, usted tiene el nombre de Cliente. " +
-                "Lo primero que debe hacer es elegir el puerto para conectarse con el otro usuario ");
+        System.out.println("Bienvenido Usuario, usted tiene el nombre de Cliente. ");
         String Host = "localhost";
 
         int Puerto = 6000;
@@ -55,7 +54,7 @@ public class Cliente {
                     System.out.println("Se ha cortado la conexión");
                     cambioYcorto=true;
                 }else if(mensajeRecibe.contains("CAMBIO")){
-                    System.out.println("Has realizado el cambio ahora te toca escribir");
+                    System.out.println("Han realizado el cambio ahora te toca escribir");
                     cambio=false;
                 }
             }
